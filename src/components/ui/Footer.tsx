@@ -1,19 +1,19 @@
-import React from 'react';
+import Link from 'next/link';
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white py-4 px-6 flex flex-col md:flex-row items-center justify-between gap-4">
       {/* Left: Navigation links */}
       <div className="flex flex-col sm:flex-row gap-4 text-center sm:text-left">
-        <a href="#" className="hover:underline">
+        <Link href="/" className="hover:underline">
           Home
-        </a>
-        <a href="#" className="hover:underline">
+        </Link>
+        <Link href="/about" className="hover:underline">
           About
-        </a>
-        <a href="#" className="hover:underline">
+        </Link>
+        <Link href="/contact" className="hover:underline">
           Contact
-        </a>
+        </Link>
       </div>
 
       {/* Center: Disclaimer */}
