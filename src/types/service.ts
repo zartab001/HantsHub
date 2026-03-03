@@ -14,4 +14,7 @@ export interface Service {
   image: string;
   location: string;
   createdAt: string;
+
+  phone?: string; // optional phone number
+  email?: string; // optional email address
 }

@@ -38,11 +38,25 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         {service.description}
       </p>
 
+      {/* Phone & Email Pills */}
+      <div className="flex flex-wrap gap-2 mb-3 text-xs">
+        {service.phone && (
+          <span className="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full">
+            {service.phone}
+          </span>
+        )}
+        {service.email && (
+          <span className="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full">
+            {service.email}
+          </span>
+        )}
+      </div>
+
       {/* Price and Location */}
       <div className="flex justify-between items-center text-xs text-gray-600 dark:text-gray-400 mb-3">
         <span>Rs. {service.price}</span>
         <span>
-          {service.location} • ⭐ {service.rating}
+          {service.location} {service.rating}
         </span>
       </div>
 
