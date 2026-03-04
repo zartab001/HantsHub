@@ -1,6 +1,8 @@
+// src/lib/mock-data.ts
 import { Service } from '@/types/service';
 
 export const services: Service[] = [
+  // Cleaning
   {
     id: '1',
     title: 'Home Cleaning Service',
@@ -20,6 +22,25 @@ export const services: Service[] = [
   },
   {
     id: '2',
+    title: 'Office Cleaning Service',
+    description: 'Commercial cleaning services for offices and buildings.',
+    price: 4000,
+    rating: 4.6,
+    category: {
+      id: 'c1',
+      name: 'Cleaning',
+      slug: 'cleaning',
+    },
+    image: '/images/office-cleaning.jpg',
+    location: 'Lahore',
+    createdAt: new Date().toISOString(),
+    phone: '+92 300 2222222',
+    email: 'officecleaning@example.com',
+  },
+
+  // Maintenance
+  {
+    id: '3',
     title: 'AC Repair & Installation',
     description: 'Expert AC repair and installation services.',
     price: 4000,
@@ -32,11 +53,11 @@ export const services: Service[] = [
     image: '/images/ac.jpg',
     location: 'Lahore',
     createdAt: new Date().toISOString(),
-    phone: '+92 300 2222222',
+    phone: '+92 300 3333333',
     email: 'acservice@example.com',
   },
   {
-    id: '3',
+    id: '4',
     title: 'Plumbing Repair Service',
     description: 'Professional plumbing repair for leaks, pipes, and fittings.',
     price: 1800,
@@ -49,11 +70,11 @@ export const services: Service[] = [
     image: '/images/plumbing.jpg',
     location: 'Islamabad',
     createdAt: new Date().toISOString(),
-    phone: '+92 300 3333333',
+    phone: '+92 300 4444444',
     email: 'plumbing@example.com',
   },
   {
-    id: '4',
+    id: '5',
     title: 'Electrician Services',
     description: 'Certified electricians for wiring and installations.',
     price: 2200,
@@ -66,11 +87,13 @@ export const services: Service[] = [
     image: '/images/electrician.jpg',
     location: 'Rawalpindi',
     createdAt: new Date().toISOString(),
-    phone: '+92 300 4444444',
+    phone: '+92 300 5555555',
     email: 'electrician@example.com',
   },
+
+  // Design
   {
-    id: '5',
+    id: '6',
     title: 'Graphic Design Service',
     description: 'Creative logo and branding design solutions.',
     price: 5000,
@@ -83,11 +106,30 @@ export const services: Service[] = [
     image: '/images/design.jpg',
     location: 'Karachi',
     createdAt: new Date().toISOString(),
-    phone: '+92 300 5555555',
+    phone: '+92 300 6666666',
     email: 'design@example.com',
   },
   {
-    id: '6',
+    id: '7',
+    title: 'Interior Design Consultation',
+    description: 'Professional interior design services for homes and offices.',
+    price: 8000,
+    rating: 4.9,
+    category: {
+      id: 'c3',
+      name: 'Design',
+      slug: 'design',
+    },
+    image: '/images/interior-design.jpg',
+    location: 'Lahore',
+    createdAt: new Date().toISOString(),
+    phone: '+92 300 7777777',
+    email: 'interiordesign@example.com',
+  },
+
+  // IT Services
+  {
+    id: '8',
     title: 'Web Development Service',
     description: 'Modern responsive website development.',
     price: 15000,
@@ -100,42 +142,8 @@ export const services: Service[] = [
     image: '/images/webdev.jpg',
     location: 'Lahore',
     createdAt: new Date().toISOString(),
-    phone: '+92 300 6666666',
-    email: 'webdev@example.com',
-  },
-  {
-    id: '7',
-    title: 'Makeup Artist Booking',
-    description: 'Professional bridal and event makeup services.',
-    price: 8000,
-    rating: 4.7,
-    category: {
-      id: 'c5',
-      name: 'Beauty',
-      slug: 'beauty',
-    },
-    image: '/images/makeup.jpg',
-    location: 'Faisalabad',
-    createdAt: new Date().toISOString(),
-    phone: '+92 300 7777777',
-    email: 'makeup@example.com',
-  },
-  {
-    id: '8',
-    title: 'Car Wash & Detailing',
-    description: 'Premium car wash and interior detailing service.',
-    price: 2000,
-    rating: 4.4,
-    category: {
-      id: 'c6',
-      name: 'Automotive',
-      slug: 'automotive',
-    },
-    image: '/images/carwash.jpg',
-    location: 'Multan',
-    createdAt: new Date().toISOString(),
     phone: '+92 300 8888888',
-    email: 'carwash@example.com',
+    email: 'webdev@example.com',
   },
   {
     id: '9',
@@ -154,8 +162,29 @@ export const services: Service[] = [
     phone: '+92 300 9999999',
     email: 'laptoprepair@example.com',
   },
+
+  // Beauty
   {
     id: '10',
+    title: 'Makeup Artist Booking',
+    description: 'Professional bridal and event makeup services.',
+    price: 8000,
+    rating: 4.7,
+    category: {
+      id: 'c5',
+      name: 'Beauty',
+      slug: 'beauty',
+    },
+    image: '/images/makeup.jpg',
+    location: 'Faisalabad',
+    createdAt: new Date().toISOString(),
+    phone: '+92 300 1010101',
+    email: 'makeup@example.com',
+  },
+
+  // Events
+  {
+    id: '11',
     title: 'Photography for Events',
     description: 'Professional photography for weddings and events.',
     price: 12000,
@@ -168,7 +197,26 @@ export const services: Service[] = [
     image: '/images/photography.jpg',
     location: 'Peshawar',
     createdAt: new Date().toISOString(),
-    phone: '+92 300 1010101',
+    phone: '+92 300 1112121',
     email: 'photography@example.com',
+  },
+
+  // Automotive
+  {
+    id: '12',
+    title: 'Car Wash & Detailing',
+    description: 'Premium car wash and interior detailing service.',
+    price: 2000,
+    rating: 4.4,
+    category: {
+      id: 'c6',
+      name: 'Automotive',
+      slug: 'automotive',
+    },
+    image: '/images/carwash.jpg',
+    location: 'Multan',
+    createdAt: new Date().toISOString(),
+    phone: '+92 300 1212121',
+    email: 'carwash@example.com',
   },
 ];

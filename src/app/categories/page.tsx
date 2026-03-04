@@ -1,16 +1,11 @@
+// src/app/categories/page.tsx
 import { services } from "@/lib/mock-data";
 import { Category } from "@/types/service";
 import CategoryGrid from "@/components/categories/CategoryGrid";
 
 export default function CategoriesPage() {
-  // Extract unique top-level categories from services
   const uniqueCategories: Category[] = Array.from(
-    new Map(
-      services.map((service) => [
-        service.category.slug,
-        service.category,
-      ])
-    ).values()
+    new Map(services.map((s) => [s.category.slug, s.category])).values()
   );
 
   return (
@@ -20,8 +15,7 @@ export default function CategoriesPage() {
           Browse Support Categories
         </h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Explore available medical and social support services by category.
-          Find the right help based on your needs and your region.
+          Explore available support services by category.
         </p>
       </section>
 
