@@ -15,6 +15,23 @@ export interface Service {
   location: string;
   createdAt: string;
 
-  phone?: string; // optional phone number
-  email?: string; // optional email address
+  //Contact information
+  phone?: string;
+  email?: string;
+  website?: string;
+
+  //Address information
+  address?: string;
+
+  // Business info
+  openingHours?: string;
+
+  // External links
+  bookingUrl?: string;
+
+  //Map location support
+  coordinates?: {
+    latitude?: number;
+    longitude?: number;
+  };
 }
