@@ -31,9 +31,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         <div className="flex items-center justify-between mb-6">
 
           <h1 className="text-2xl font-bold">
-            {filteredServices.length} result
-            {filteredServices.length} results for &quot;{query}&quot;
-          </h1>
+            {filteredServices.length} {filteredServices.length === 1 ? "result" : "results"} for &quot;{query}&quot;
+            </h1>
 
           <Link
             href="/services"
