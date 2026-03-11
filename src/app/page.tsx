@@ -1,7 +1,7 @@
-import SearchBar from '@/components/ui/SearchBar';
+import SearchBar from '@/components/search/SearchBar';
 import { getServices } from '@/lib/api';
 import ServiceCard from '@/components/services/ServiceCard';
-import Link from "next/link";
+import Link from 'next/link';
 
 export default async function Home() {
   const services = await getServices(); // Fetching mock services
@@ -25,7 +25,7 @@ export default async function Home() {
         <SearchBar />
 
         {/* Browse Categories CTA */}
-       <Link
+        <Link
           href="/categories"
           className="mt-4 px-6 py-3 border rounded-md hover:bg-gray-100 transition cursor-pointer inline-block"
         >
