@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { X } from 'lucide-react';
 
 export default function HeaderSearch() {
   const [query, setQuery] = useState('');
@@ -67,8 +68,6 @@ export default function HeaderSearch() {
 
   const clearInput = () => {
     setQuery('');
-    setIsFocused(false);
-    router.push('/'); // go back to home
   };
 
   const handleRecentClick = (item: string) => {
@@ -80,24 +79,27 @@ export default function HeaderSearch() {
   return (
     <div ref={wrapperRef} className="relative w-full max-w-xs">
       <form onSubmit={handleSearch}>
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Search services... (press /)"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500"
-        />
-        {query && (
-          <button
-            type="button"
-            onClick={clearInput}
-            className="absolute right-2 top-2 text-gray-400 hover:text-black"
-          >
-            ✕
-          </button>
-        )}
+        <div className="relative">
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Search services... (press /)"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            className="border rounded-lg px-4 py-2 w-full pr-10 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          />
+          {query && (
+            <button
+              type="button"
+              onClick={clearInput}
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black transition"
+              aria-label="Clear search"
+            >
+              <X size={16} />
+            </button>
+          )}
+        </div>
       </form>
 
       {/* Dropdown shows only when focused and there are recent items */}
