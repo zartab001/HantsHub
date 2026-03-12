@@ -2,58 +2,40 @@
 
 import { Mic, X } from 'lucide-react';
 import { useState } from 'react';
+import LocationSelector from './LocationSelector';
+import { useSearchStore } from '@/store/searchStore';
 
 export default function SearchBar() {
-  const [query, setQuery] = useState<string>('');
-
-  // Load recent searches safely from localStorage
-  const [recent, setRecent] = useState<string[]>(() => {
-    if (typeof window === 'undefined') return [];
-
-    try {
-      const stored = localStorage.getItem('recentSearches');
-      return stored ? JSON.parse(stored) : [];
-    } catch {
-      return [];
-    }
-  });
-
-  const saveRecentSearch = (value: string) => {
-    if (!value.trim()) return;
-
-    let updated = [value, ...recent.filter((item) => item !== value)];
-    updated = updated.slice(0, 5);
-
-    setRecent(updated);
-    localStorage.setItem('recentSearches', JSON.stringify(updated));
-  };
+  const { query, setQuery, recentSearches, addRecentSearch } = useSearchStore();
+  const [input, setInput] = useState(query);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    console.log('Search:', query);
-    saveRecentSearch(query);
+    setQuery(input);
+    addRecentSearch(input);
+    console.log('Search submitted:', input);
   };
 
-  const clearInput = () => {
-    setQuery('');
-  };
+  const clearInput = () => setInput('');
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-3xl mx-auto">
       <form onSubmit={handleSubmit} className="flex items-center gap-2">
+        {/* Location Dropdown */}
+        <LocationSelector />
+
         {/* Input */}
         <div className="relative flex-1">
           <input
             type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
             placeholder="Search for services..."
             className="w-full border rounded-md px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-black"
           />
 
           {/* Clear button */}
-          {query && (
+          {input && (
             <button
               type="button"
               onClick={clearInput}
@@ -83,15 +65,14 @@ export default function SearchBar() {
       </form>
 
       {/* Recent Searches */}
-      {recent.length > 0 && (
+      {recentSearches.length > 0 && (
         <div className="mt-3">
           <p className="text-sm text-gray-500 mb-2">Recent searches</p>
-
           <div className="flex flex-wrap gap-2">
-            {recent.map((item, index) => (
+            {recentSearches.map((item: string, index: number) => (
               <button
                 key={index}
-                onClick={() => setQuery(item)}
+                onClick={() => setInput(item)}
                 className="text-sm bg-gray-200 px-3 py-1 rounded-full hover:bg-gray-300 transition"
               >
                 {item}
