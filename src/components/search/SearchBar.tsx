@@ -1,51 +1,74 @@
 'use client';
 
 import { Mic } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import LocationSelector from './LocationSelector';
 import { useSearchStore } from '@/store/searchStore';
 
 export default function SearchBar() {
-  const { query, setQuery, addRecentSearch } = useSearchStore();
+  const router = useRouter();
+
+  const {
+    query,
+    location,
+    setQuery,
+    addRecentSearch,
+    loadFromStorage,
+  } = useSearchStore();
+
   const [input, setInput] = useState(query);
+
+  useEffect(() => {
+    loadFromStorage();
+  }, [loadFromStorage]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setQuery(input);
-    addRecentSearch(input);
-    console.log('Search submitted:', input);
+
+    const trimmed = input.trim();
+    if (!trimmed) return;
+
+    setQuery(trimmed);
+    addRecentSearch(trimmed);
+
+    router.push(
+      `/search?q=${encodeURIComponent(trimmed)}&location=${encodeURIComponent(
+        location
+      )}`
+    );
   };
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      <form onSubmit={handleSubmit} className="flex items-center gap-2">
-        {/* Location Dropdown */}
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center gap-2 bg-white border rounded-lg p-2 shadow-sm"
+      >
+        {/* Location */}
         <LocationSelector />
 
         {/* Input */}
-        <div className="flex-1">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Search for services..."
-            className="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
-          />
-        </div>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Search services... (press /)"
+          className="flex-1 px-3 py-2 outline-none"
+        />
 
-        {/* Search button */}
+        {/* Search Button */}
         <button
           type="submit"
-          className="bg-black text-white px-4 py-2 rounded-md hover:opacity-90 transition"
+          className="bg-black text-white px-5 py-2 rounded-md hover:opacity-90"
         >
           Search
         </button>
 
-        {/* Voice placeholder */}
+        {/* Voice button */}
         <button
           type="button"
-          aria-label="Voice search"
-          className="border px-3 py-2 rounded-md hover:bg-gray-100 flex items-center justify-center"
+          className="border px-3 py-2 rounded-md hover:bg-gray-100"
         >
           <Mic size={18} />
         </button>
